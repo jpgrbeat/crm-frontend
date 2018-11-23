@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {Route,Switch,Link} from 'react-router-dom'
 import './App.css';
-
+import NavBar from './containers/NavBar'
+import Login from './containers/Login'
+import LandingMenu from './containers/LandingMenu'
+import Profile from './containers/Profile'
+import Footer from './components/Footer'
+import AppointmentsLandingPage from './containers/AppointmentsLandingPage'
 class App extends Component {
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <React.Fragment>
+      <NavBar/>
+      <Switch>
+      <Route exact to='/' render={()=>(
+          <React.Fragment>
+            <AppointmentsLandingPage/>
+          </React.Fragment>
+      )}/>
+      <Route to path='/menu' render={(props)=><LandingMenu/>}/>
+      <Route to path='/profile' render={(props)=><Profile/>}/>
+      </Switch>
+      <Footer/>
+      </React.Fragment>
+    )
   }
 }
 
